@@ -2,6 +2,8 @@ package trafficanalyzerviewer.camera;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 	
@@ -15,6 +17,9 @@ public class Line {
 	Color color = Color.yellow;
 	
 	Camera camera;
+	
+	
+	List<Long> data = new ArrayList<Long>();
 	
 	public Long getCount() {
 		return count;
@@ -57,6 +62,12 @@ public class Line {
 	}
 	public void setCamera(Camera camera) {
 		this.camera = camera;
+	}
+	public List<Long> getData() {
+		return data;
+	}
+	public void setData(List<Long> data) {
+		this.data = data;
 	}
 	
 	

@@ -89,9 +89,9 @@ import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
  * <p>
  * Specify a single MRL to play on the command-line.
  */
-public abstract class OverlayTestBasic {
+public abstract class ViewerBase {
 	
-	Logger logger = LoggerFactory.getLogger(OverlayTestBasic.class);
+	Logger logger = LoggerFactory.getLogger(ViewerBase.class);
 	
 	final String url = "rtsp://192.168.173.217:8085";
 	final String url2 ="http://wmccpinetop.axiscam.net/mjpg/video.mjpg";
@@ -117,10 +117,10 @@ public abstract class OverlayTestBasic {
 //        });
 //    }
 
-    public OverlayTestBasic(String mrl) {
+    public ViewerBase(String mrl) {
 
-//    	f.setSize(1920, 1280);
-    	f.setExtendedState(Frame.MAXIMIZED_BOTH);
+   	f.setSize(1280, 720);
+//    	f.setExtendedState(Frame.MAXIMIZED_BOTH);
         f.setBackground(Color.black);
         f.setVisible(true);
         //f.setLayout(new BorderLayout());
@@ -131,6 +131,24 @@ public abstract class OverlayTestBasic {
         addListeners();
         prepareCameras();
         addCameras();
+        processdata();
+    }
+    
+    public void processdata() {
+    	for (Camera camera : cameraList) {
+			for (Line line : camera.getLineList()) {
+				for (Long  duration : line.getData()) {
+				Timer timer = new Timer(duration.intValue(), new ActionListener() {
+					  @Override
+					  public void actionPerformed(ActionEvent arg0) {
+						lineCrossed(line.getId());
+					  }
+					});
+		    	timer.setRepeats(false); // Only execute once
+		    	timer.start(); // Go go go!
+				}
+			}
+		}
     }
     
     protected void addCameras() {
@@ -145,9 +163,13 @@ public abstract class OverlayTestBasic {
     	camera.setEmbeddedMediaPlayer(mediaPlayer);
     	
     	Canvas vs = new Canvas();
+    	vs.setSize(1290, 740);
     	CanvasVideoSurface videoSurface = factory.newVideoSurface(vs);
         mediaPlayer.setVideoSurface(videoSurface);
-//        f.add(vs,BorderLayout.CENTER);
+        camera.setCanvas(vs);
+        camera.setCanvasVideoSurface(videoSurface);
+        
+        //        f.add(vs,BorderLayout.CENTER);
         f.add(vs);
         AnnotationWindow aw = new AnnotationWindow(f, videoSurface.canvas(), mediaPlayer,camera);
         mediaPlayer.setOverlay(aw);
@@ -155,6 +177,9 @@ public abstract class OverlayTestBasic {
         mediaPlayer.playMedia(camera.getConnectionUrl());
         mediaPlayer.pause();
 
+//        mediaPlayer.setSubTitleFile(null);
+        
+//        mediaPlayer.
         setFrameLayout();
     }
 

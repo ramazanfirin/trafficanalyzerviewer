@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.player.MediaPlayer;
 
@@ -21,17 +20,17 @@ public class DirectPlayerClient {
 		JFrame player = new JFrame("Video Player");
 		
 		//1 - Direct Test Player
-		DirectTestPlayer directTestPlayer = new DirectTestPlayer(640, 480, args);
-		
+		DirectTestPlayer directTestPlayer = new DirectTestPlayer(1280, 720, args);
+//		
 		MediaPlayer mediaPlayer = directTestPlayer.getMediaPlayer();
 		JPanel imagePane = directTestPlayer.getImagePane();
 		
-		//2 - EmbeddedMediaPlayer
+////		2 - EmbeddedMediaPlayer
 //		EmbeddedMediaPlayerComponent embeddedMediaPlayerComponent = new EmbeddedMediaPlayerComponent();
 //		MediaPlayer mediaPlayer = embeddedMediaPlayerComponent.getMediaPlayer();
-//		
 		
-		player.setSize(640, 480);
+		
+		player.setSize(1280, 720);
 		player.setVisible(true);
 		player.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		player.setContentPane(imagePane);

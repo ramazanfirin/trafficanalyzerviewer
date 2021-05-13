@@ -21,7 +21,7 @@ public class DirectPlayerClientOverlay {
 		JFrame player = new JFrame("Video Player");
 		
 		//1 - Direct Test Player
-		DirectTestPlayerOverlay directTestPlayer = new DirectTestPlayerOverlay(640, 480, args);
+		DirectTestPlayerOverlay directTestPlayer = new DirectTestPlayerOverlay(1280, 720, args);
 		
 		MediaPlayer mediaPlayer = directTestPlayer.getMediaPlayer();
 		JPanel imagePane = directTestPlayer.getImagePane();
@@ -31,7 +31,7 @@ public class DirectPlayerClientOverlay {
 //		MediaPlayer mediaPlayer = embeddedMediaPlayerComponent.getMediaPlayer();
 //		
 		
-		player.setSize(640, 480);
+		player.setSize(1280, 720);
 		player.setVisible(true);
 		player.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		player.setContentPane(imagePane);

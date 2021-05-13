@@ -26,6 +26,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -112,16 +113,35 @@ public class DirectTestPlayerOverlay {
         public void paint(Graphics g) {
             Graphics2D g2 = (Graphics2D)g;
             g2.drawImage(image, null, 0, 0);
-            // You could draw on top of the image here...
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
-            g2.setColor(Color.red);
-            g2.setComposite(AlphaComposite.SrcOver.derive(0.3f));
-            g2.fillRoundRect(100, 100, 100, 80, 32, 32);
-            g2.setComposite(AlphaComposite.SrcOver);
-            g2.setColor(Color.white);
-            g2.setFont(font);
-            g2.drawString("vlcj direct media player", 130, 150);
+//            // You could draw on top of the image here...
+//            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+//            g2.setColor(Color.red);
+//            g2.setComposite(AlphaComposite.SrcOver.derive(0.3f));
+//            g2.fillRoundRect(100, 100, 100, 80, 32, 32);
+//            g2.setComposite(AlphaComposite.SrcOver);
+//            g2.setColor(Color.white);
+//            g2.setFont(font);
+//            g2.drawString("vlcj direct media player", 130, 150);
+            
+            
+          g2.setColor(Color.red);
+          g2.setComposite(AlphaComposite.SrcOver.derive(0.3f));
+
+          Polygon polygon = new Polygon();
+//  		polygon.addPoint(393,537);
+  		polygon.addPoint(516,507);
+  		polygon.addPoint(778,630);
+//  		polygon.addPoint(700,690);
+  		g2.drawPolygon(polygon);
+  		
+  		Polygon polygon2 = new Polygon();
+  		polygon2.addPoint(518,505);
+  		polygon2.addPoint(629,466);
+  		polygon2.addPoint(861,555);
+  		polygon2.addPoint(778,628);
+  		//g2.drawPolygon(polygon2);
+            
         }
     }
 

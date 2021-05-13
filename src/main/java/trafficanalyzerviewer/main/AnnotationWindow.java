@@ -80,7 +80,6 @@ public class AnnotationWindow extends JWindow{
 		super.paint(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
-		logger.info("basliyor");
 		
 		if(videoDimension == null) {
 			videoDimension = mediaPlayer.getVideoDimension();
@@ -137,12 +136,13 @@ public class AnnotationWindow extends JWindow{
 //			g2.drawRect(interpolated_x, interpolated_y, interpolated_w, interpolated_h);
 //            g2.fillRect(interpolated_x, interpolated_y, interpolated_w, interpolated_h);
             
-            Polygon polygon = new Polygon();
+           
             for (Iterator iterator = camera.getLineList().iterator(); iterator.hasNext();) {
     			Line line = (Line) iterator.next();
     			g.setColor(line.getColor());
-    			if(line.getId()==1l)
-    				logger.info(line.getId()+":"+line.getColor().toString());
+//    			if(line.getId()==1l)
+//    				logger.info(line.getId()+":"+line.getColor().toString());
+    			 Polygon polygon = new Polygon();
     			polygon.addPoint((int)line.getStart().getX(),(int)line.getStart().getY());
     			polygon.addPoint((int)line.getStart().getX()+40,(int)line.getStart().getY());
     			
@@ -164,8 +164,34 @@ public class AnnotationWindow extends JWindow{
     			g2.drawString(line.getCount().toString(), countX, countY);
     			
     		}
+    		
+//    		Font myFont2 = new Font ("Courier New", 1, 13);
+//    		g2.setFont (myFont2);
+//    		g2.setColor(Color.BLACK);
+//    		g2.setComposite(AlphaComposite.SrcOver.derive(1f));
+//			if(mediaPlayer.getTime() % 1000 ==0)
+//				g2.drawString(Long.toString(mediaPlayer.getTime()), 100, 100);
+    		
+    		
+    		for (Iterator iterator = camera.getPolygons().iterator(); iterator.hasNext();) {
+    			Polygon polygon = (Polygon) iterator.next();
+    			g.setColor(Color.red);
+//    			
+    			g2.fillPolygon(polygon);
+    			
+
+    		}
+
+    		
+    			System.out.println(camera.getCanvas().getHeight());
+    			System.out.println(camera.getCanvas().getWidth());
+    		
 		}
 		
+		
+	}
+	
+	public void drawPolygon(Graphics g) {
 		
 	}
 }

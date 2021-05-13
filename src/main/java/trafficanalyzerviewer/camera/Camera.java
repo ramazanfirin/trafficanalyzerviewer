@@ -1,9 +1,12 @@
 package trafficanalyzerviewer.camera;
 
+import java.awt.Canvas;
+import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
 
 public class Camera {
 
@@ -16,6 +19,12 @@ public class Camera {
 	
 	List<Line> lineList = new ArrayList<Line>();
 	EmbeddedMediaPlayer embeddedMediaPlayer;
+	
+	List<Polygon> polygons = new ArrayList<Polygon>();
+	
+	Canvas canvas;
+	
+	CanvasVideoSurface canvasVideoSurface;
 
 	public String getName() {
 		return name;
@@ -79,6 +88,30 @@ public class Camera {
 
 	public void setEmbeddedMediaPlayer(EmbeddedMediaPlayer embeddedMediaPlayer) {
 		this.embeddedMediaPlayer = embeddedMediaPlayer;
+	}
+
+	public List<Polygon> getPolygons() {
+		return polygons;
+	}
+
+	public void setPolygons(List<Polygon> polygons) {
+		this.polygons = polygons;
+	}
+
+	public Canvas getCanvas() {
+		return canvas;
+	}
+
+	public void setCanvas(Canvas canvas) {
+		this.canvas = canvas;
+	}
+
+	public CanvasVideoSurface getCanvasVideoSurface() {
+		return canvasVideoSurface;
+	}
+
+	public void setCanvasVideoSurface(CanvasVideoSurface canvasVideoSurface) {
+		this.canvasVideoSurface = canvasVideoSurface;
 	}
 	
 }
